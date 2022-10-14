@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Log in</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('/assets/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{{ asset('/assets//plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('/assets/dist/css/adminlte.min.css') }}">
+
+  <link rel="stylesheet" href="{{ asset('assets/summernote/summernote.min.css') }}">
+
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="/index2.html">{{env('APP_NAME')}}</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      @error('error')
+            <div class="alert alert-danger background-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="icofont icofont-close-line-circled text-white"></i>
+                </button>
+                <strong>{{ $message }}</strong>
+            </div>
+            <div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                  Warning alert preview. This alert is dismissable.
+            </div>
+        @enderror
+
+      <form action="{{url()->to('/')}}" method="post">
+        @csrf
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email" name="email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        @error('email')
+            <span class="text-danger" style="display: block;">
+                {{ $message }}
+            </span>
+        @enderror
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        @error('password')
+            <span class="text-danger" style="display: block;">
+                {{ $message }}
+            </span>
+        @enderror
+
+        
+
+
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember" name="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+
+
+
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+
+<script src="{{ asset('/assets/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- AdminLTE App -->
+<script src="{{ asset('/assets/dist/js/adminlte.min.js') }}"></script>
+
+<script src="{{ asset('assets/summernote/summernote.min.js') }}"></script>
+
+
+
+<script>
+
+    $(document).ready(function() {
+      $('#summary').summernote({
+        placeholder: "Ketik disini .....",
+          tabsize: 2,
+          height: 100
+      });
+    });
+
+    $(document).ready(function() {
+      $('#description').summernote({
+        placeholder: "Ketik disini ....",
+          tabsize: 2,
+          height: 150
+      });
+    });
+
+    $(document).ready(function() {
+      $('#quote').summernote({
+        placeholder: "Ketik disini ....",
+          tabsize: 2,
+          height: 100
+      });
+    });
+    // $('select').selectpicker();
+
+</script>
+
+</body>
+</html>
