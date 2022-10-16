@@ -23,11 +23,11 @@
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
-  @include('components.template.navbar')
+  @include('components.templates.navbar')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @include('components.template.sidebar')
+  @include('components.templates.sidebar')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     @yield('content')

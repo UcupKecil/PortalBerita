@@ -17,7 +17,7 @@ class KategoriController extends Controller
 
         $data = [
             'kategori' => $kategori,
-            'script'            => 'components.scripts.kategori'
+            'script'   => 'components.scripts.kategori'
         ];
 
         return view('pages.kategori', $data);
@@ -109,7 +109,7 @@ class KategoriController extends Controller
               DB::transaction(function() use($request, $id) {
                   DB::table('kategori_berita')->where('id', $id)->update([
                       'updated_at' => date('Y-m-d H:i:s'),
-                      'title' => $request->title,
+                      'role' => $request->title,
                       'slug' => Str::slug($request->title),
                       'status' => 'active',
                   ]);

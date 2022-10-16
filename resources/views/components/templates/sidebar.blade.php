@@ -33,11 +33,6 @@
             </a>
           </li>
 
-
-
-
-
-
           @if(Auth::user()->getRoleNames()[0] == 'Super Admin')
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -49,13 +44,13 @@
                 </a>
                 <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('/roles') }}" class="nav-link">
+                <a href="{{ url('/role') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Role</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/users') }}" class="nav-link">
+                <a href="{{ url('/pengguna') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User</p>
                 </a>

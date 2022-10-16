@@ -151,7 +151,6 @@
                     { data: 'title', name:'berita.title'},
                     { data: 'kategori', name:'kategori_berita.title'},
                     { data: 'photo', name:'berita.photo'},
-
                     { data: 'action', orderable: false, searchable: false},
                 ]
             });
