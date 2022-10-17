@@ -33,14 +33,14 @@ class RoleController extends Controller
             return Response::json($data);
         }
 
-        
+
 
         $data = DB::table('roles')
 
             ->select([
                 'roles.*'
             ])
-            ->orderBy('name', 'desc');
+            ->orderBy('id', 'desc');
 
         return DataTables::of($data)
             ->addColumn(
@@ -95,7 +95,7 @@ class RoleController extends Controller
 
     public function edit(Request $request, $id)
     {
-        if($request->title == NULL) {
+        if($request->role == NULL) {
             $json = [
                 'msg'       => 'Mohon masukan role',
                 'status'    => false
@@ -105,7 +105,7 @@ class RoleController extends Controller
               DB::transaction(function() use($request, $id) {
                   DB::table('roles')->where('id', $id)->update([
                       'updated_at' => date('Y-m-d H:i:s'),
-                      'name' => $request->title,
+                      'name' => $request->role,
                   ]);
               });
 

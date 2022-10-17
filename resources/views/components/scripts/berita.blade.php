@@ -73,8 +73,6 @@
             success: function (response) {
                 $('#title').val(response.title);
                 $('#berita_kategori_id').val(response.post_cat_id);
-
-
                 $("#quoteEdit").summernote("code", response.quote);
                 $("#summaryEdit").summernote("code", response.summary);
                 $("#descriptionEdit").summernote("code", response.description);

@@ -11,7 +11,7 @@
           <div class="modal-body">
               <div class="form-group">
                   <label for="editName">Role</label>
-                  <input type="text" class="form-control" id="title" name="title">
+                  <input type="text" class="form-control" id="role" name="role">
               </div>
 
 

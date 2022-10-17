@@ -18,7 +18,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Pengelola</b>PortalBerita</a>
+    <a href="/">{{ env('APP_NAME') }}</a>
   </div>
 
   <div class="card">
@@ -27,7 +27,7 @@
 
     <form action="{{url('/register')}}" method="post">
         @csrf
-        @error('username')
+        @error('name')
                 <span class="text-danger" style="display: block;">
                 {{ $message }}
                 </span>
@@ -61,11 +61,15 @@
             </span>
         @enderror
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Role" name="role">
+            <select name="role" id="createRole" class="form-control">
+                <option value="" selected disabled>Role</option>
+                @foreach($roles as $role)
+                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                @endforeach
+            </select>
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-user"></span>
-
+                <span class="fas fa-id-badge"></span>
               </div>
             </div>
           </div>

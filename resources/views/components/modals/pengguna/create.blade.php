@@ -1,3 +1,4 @@
+
 <form id="createForm">
     <div class="modal" tabindex="-1" role="dialog" id="createModal">
       <div class="modal-dialog" role="document">
@@ -11,21 +12,25 @@
           <div class="modal-body">
               <div class="form-group">
                   <label for="createName">Pengguna</label>
-                  <input type="text" class="form-control" id="createName" name="title">
+                  <input type="text" class="form-control" id="createName" name="name">
               </div>
               <div class="form-group">
-                  <label for="createName">Email</label>
-                  <input type="email" class="form-control" id="createEmail" name="title">
+                  <label for="createEmail">Email</label>
+                  <input type="email" class="form-control" id="createEmail" name="email">
               </div>
               <div class="form-group">
-                <label for="createRole">Role</label>
-                <select name="role_id" id="createRole" class="form-control">                //NOTE
+                <label for="createRoles">Role</label>
+                <select name="role" id="createRole" class="form-control">                
                     <option value="" selected disabled>Pilih Role</option>
-                    @foreach($BeritaKategori as $kategori)
-                        <option value="{{ $kategori->id }}">{{ $kategori->title }}</option>
+                    @foreach($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
               </div>
+              <div class="form-group">
+                <label for="createPassword">Password</label>
+                <input type="password" class="form-control" id="createPassword" name="password">
+            </div>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

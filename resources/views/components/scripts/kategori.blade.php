@@ -90,7 +90,7 @@
         @if(Auth::user()->getRoleNames()[0] == 'User')
             $('#table').DataTable({
                 order: [],
-                lengthMenu: [[10, 25, 50, 100, -1], ['Sepuluh', 'Salawe', 'lima puluh', 'cepe', 'kabeh']],
+                lengthMenu: [[5, 10, 25, 50, -1], ['5', '10', '25', '50', 'All']],
                 filter: true,
                 processing: true,
                 responsive: true,
@@ -101,15 +101,15 @@
                 "columns":
                 [
                     { data: 'DT_RowIndex', orderable: false, searchable: false},
-                    { data: 'title', name:'kategori.title'},
-                    { data: 'slug', name:'kategori.slug'},
-                    { data: 'status', name:'kategori.status'},
+                    { data: 'title', name:'kategori_berita.title'},
+                    { data: 'slug', name:'kategori_berita.slug'},
+                    { data: 'status', name:'kategori_berita.status'},
                 ]
             });
         @else
             $('#table').DataTable({
                 order: [],
-                lengthMenu: [[10, 25, 50, 100, -1], ['Sepuluh', 'Salawe', 'lima puluh', 'cepe', 'kabeh']],
+                lengthMenu: [[5, 10, 25, 50, -1], ['5', '10', '25', '50', 'All']],
                 filter: true,
                 processing: true,
                 responsive: true,
@@ -120,23 +120,23 @@
                 "columns":
                 [
                     { data: 'DT_RowIndex', orderable: false, searchable: false},
-                    { data: 'title', name:'kategori.title'},
-                    { data: 'slug', name:'kategori.slug'},
-                    { data: 'status', name:'kategori.status'},
+                    { data: 'title', name:'kategori_berita.title'},
+                    { data: 'slug', name:'kategori_berita.slug'},
+                    { data: 'status', name:'kategori_berita.status'},
                     { data: 'action', orderable: false, searchable: false},
                 ]
             });
         @endif
 
-        $('.price').keyup(function(event) {
-            if(event.which >= 37 && event.which <= 40) return;
+        // $('.price').keyup(function(event) {
+        //     if(event.which >= 37 && event.which <= 40) return;
 
-            $(this).val(function(index, value) {
-                return value
-                .replace(/\D/g, "")
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            });
-        });
+        //     $(this).val(function(index, value) {
+        //         return value
+        //         .replace(/\D/g, "")
+        //         .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //     });
+        // });
 
         $('#createSubmit').click(function (e) {
             e.preventDefault();

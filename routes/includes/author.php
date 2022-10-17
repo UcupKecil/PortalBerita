@@ -6,6 +6,6 @@ Route::get('/login', function () {
     return view('/forms/login');
 });
 
-Route::get('/register', function () {
-    return view('/forms/register');
-});
+
+
+// Route::get('/register', 'AuthController@index');

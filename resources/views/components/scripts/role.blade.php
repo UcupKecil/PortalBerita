@@ -71,7 +71,7 @@
             url: `/role/${role_id}`,
             dataType: "json",
             success: function (response) {
-                $('#title').val(response.name);
+                $('#role').val(response.name);
 
 
                 Swal.close();
@@ -90,7 +90,7 @@
         @if(Auth::user()->getRoleNames()[0] == 'User')
             $('#table').DataTable({
                 order: [],
-                lengthMenu: [[10, 25, 50, 100, -1], ['Sepuluh', 'Salawe', 'lima puluh', 'cepe', 'kabeh']],
+                lengthMenu: [[5, 10, 25, 50, -1], ['5', '10', '25', '50', 'All']],
                 filter: true,
                 processing: true,
                 responsive: true,
@@ -101,13 +101,13 @@
                 "columns":
                 [
                     { data: 'DT_RowIndex', orderable: false, searchable: false},
-                    { data: 'name', name:'role.name'},
+                    { data: 'name', name:'roles.name'},
                 ]
             });
         @else
             $('#table').DataTable({
                 order: [],
-                lengthMenu: [[10, 25, 50, 100, -1], ['Sepuluh', 'Salawe', 'lima puluh', 'cepe', 'kabeh']],
+                lengthMenu: [[5, 10, 25, 50, -1], ['5', '10', '25', '50', 'All']],
                 filter: true,
                 processing: true,
                 responsive: true,
@@ -118,7 +118,7 @@
                 "columns":
                 [
                     { data: 'DT_RowIndex', orderable: false, searchable: false},
-                    { data: 'name', name:'role.name'},
+                    { data: 'name', name:'roles.name'},
                     { data: 'action', orderable: false, searchable: false},
                 ]
             });

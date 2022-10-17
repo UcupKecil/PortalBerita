@@ -13,8 +13,6 @@
                     <label for="editName">Kategori Berita</label>
                     <input type="text" class="form-control" id="title" name="title">
                 </div>
-
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

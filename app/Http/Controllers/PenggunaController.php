@@ -2,31 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\User;
 use Exception;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Response;
-use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Egulias\EmailValidator\Validation\EmailValidation;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
+use PharIo\Manifest\Email;
+use Yajra\DataTables\Facades\DataTables;
 
 class PenggunaController extends Controller
 {
     public function index()
     {
-        $users = DB::table('users')->get();
+        $roles= DB::table('roles')->where('id', '!=', 1)
+        ->get();
 
         $data = [
-            'users' => $users,
+            'roles' => $roles,
             'script'   => 'components.scripts.pengguna'
         ];
 
         return view('pages.pengguna', $data);
+
     }
 
     public function show($id) {
         if(is_numeric($id)) {
-            $data = DB::table('users')->where('id', $id)->first();
+            $data = DB::table('users')
+            ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+            ->select([
+                'users.*', 'roles.name as role'
+            ])
+            ->where('users.id', $id)
+            ->first();
 
             //$data->status = number_format($data->status);
 
@@ -59,24 +72,53 @@ class PenggunaController extends Controller
 
     public function store(Request $request)
     {
-        if($request->title == NULL) {
+        if($request->name == NULL) {
             $json = [
                 'msg'       => 'Mohon masukan data pengguna',
                 'status'    => false
             ];
 
-        } else {
+        } if($request->name == NULL) {
+            $json = [
+                'msg'       => 'Mohon masukan nama pengguna',
+                'status'    => false
+            ];
+
+        } elseif($request->email == NULL){
+            $json = [
+                'msg'       => 'Mohon masukan email pengguna',
+                'status'    => false
+            ];
+        } elseif(strpos($request->email, '@') == false ){
+            $json = [
+                'msg'       => 'Mohon masukan format email',
+                'status'    => false
+            ];
+        } elseif($request->role == NULL){
+            $json = [
+                'msg'       => 'Mohon masukan role pengguna',
+                'status'    => false
+            ];
+        } elseif($request->password == NULL){
+            $json = [
+                'msg'       => 'Mohon masukan password pengguna',
+                'status'    => false
+            ];
+        }
+        else {
 
 
             try{
+
                 DB::transaction(function() use($request) {
-                    DB::table('users')->insert([
-                        'created_at' => date('Y-m-d H:i:s'),
-                        'name' => $request->title,
-                        'email' => $request->title,
-                        'role' => $request->title,
-                        'password' => Hash::make($request->password),
+                    $user = User::create([
+                        'name'          => $request->name,
+                        'email'         => $request->email,
+                        'password'      => Hash::make($request->password),
+                        'created_at'    => date('Y-m-d H:i:s')
                     ]);
+
+                    $user->syncRoles($request->role);
                 });
 
                 $json = [
@@ -97,19 +139,40 @@ class PenggunaController extends Controller
 
     public function edit(Request $request, $id)
     {
-        if($request->title == NULL) {
+        if($request->name == NULL) {
             $json = [
-                'msg'       => 'Mohon masukan data pengguna',
+                'msg'       => 'Mohon masukan nama pengguna',
                 'status'    => false
             ];
-        }  else {
+
+        } elseif($request->email == NULL){
+            $json = [
+                'msg'       => 'Mohon masukan email pengguna',
+                'status'    => false
+            ];
+        } elseif(strpos($request->email, '@') == false ){
+            $json = [
+                'msg'       => 'Mohon masukan format email',
+                'status'    => false
+            ];
+        } else {
             try{
-              DB::transaction(function() use($request, $id) {
-                  DB::table('users')->where('id', $id)->update([
-                      'updated_at' => date('Y-m-d H:i:s'),
-                      'role' => $request->title,
-                  ]);
-              });
+
+              DB::transaction(function () use ($request, $id) {
+                $oldUser = User::where('id', $id)->first();
+
+                $oldUser->roles()->detach();
+
+                $user = User::where('id', $id)->update([
+                    'name'          => $request->name,
+                    'email'         => $request->email,
+                    'password'      => Hash::make($request->password),
+                    'updated_at'    => date('Y-m-d H:i:s')
+                ]);
+
+                $oldUser->syncRoles($request->role);
+
+            });
 
                 $json = [
                     'msg' => 'Pengguna berhasil dirubah',
@@ -151,4 +214,6 @@ class PenggunaController extends Controller
 
         return Response::json($json);
     }
+
+
 }

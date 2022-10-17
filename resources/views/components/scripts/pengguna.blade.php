@@ -71,8 +71,9 @@
             url: `/pengguna/${pengguna_id}`,
             dataType: "json",
             success: function (response) {
-                $('#title').val(response.title);
-
+                $('#name').val(response.name);
+                $('#email').val(response.email);
+                $("#role").val(response.role);
 
                 Swal.close();
                 $('#editModal').modal('show');
@@ -90,7 +91,7 @@
         @if(Auth::user()->getRoleNames()[0] == 'User')
             $('#table').DataTable({
                 order: [],
-                lengthMenu: [[10, 25, 50, 100, -1], ['Sepuluh', 'Salawe', 'lima puluh', 'cepe', 'kabeh']],
+                lengthMenu: [[5, 10, 25, 50, -1], ['5', '10', '25', '50', 'All']],
                 filter: true,
                 processing: true,
                 responsive: true,
@@ -101,14 +102,14 @@
                 "columns":
                 [
                     { data: 'DT_RowIndex', orderable: false, searchable: false},
-                    { data: 'name', name:'user.name'},
-                    { data: 'email', name:'user.email'},
+                    { data: 'name', name:'users.name'},
+                    { data: 'email', name:'users.email'},
                 ]
             });
         @else
             $('#table').DataTable({
                 order: [],
-                lengthMenu: [[10, 25, 50, 100, -1], ['Sepuluh', 'Salawe', 'lima puluh', 'cepe', 'kabeh']],
+                lengthMenu: [[5, 10, 25, 50, -1], ['5', '10', '25', '50', 'All']],
                 filter: true,
                 processing: true,
                 responsive: true,
@@ -119,9 +120,9 @@
                 "columns":
                 [
                     { data: 'DT_RowIndex', orderable: false, searchable: false},
-                    { data: 'name', name:'user.name'},
-                    { data: 'email', name:'user.email'},
-                    { data: 'role', name:'user.role'},                                      //NOTED!!!
+                    { data: 'name', name:'users.name'},
+                    { data: 'email', name:'users.email'},
+                    { data: 'role', name:'roles.name'},
                     { data: 'action', orderable: false, searchable: false},
                 ]
             });
@@ -189,7 +190,7 @@
 
             $.ajax({
                 type: "post",
-                url: `/pengguna/${user_id}`,
+                url: `/pengguna/${pengguna_id}`,
                 data: formData,
                 dataType: "json",
                 cache: false,

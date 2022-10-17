@@ -10,6 +10,7 @@ require_once('includes/berita.php');
 require_once('includes/kategori.php');
 require_once('includes/pengguna.php');
 require_once('includes/role.php');
+require_once('includes/register.php');
 
 
 Route::get('/', function () {
