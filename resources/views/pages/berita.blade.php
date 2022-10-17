@@ -40,19 +40,12 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-                @can('create_berita')
+
                     <button type="button" class="my-3 btn btn-primary" onclick="create()">Tambah Berita</button>
-                @endcan
+
                 <table class="table table-hover table-striped table-border" id="table"
                 >
-                @if(Auth::user()->getRoleNames()[0] == 'User')
-                    <thead>
-                        <th>#</th>
-                        <th>Judul</th>
-                        <th>Kategori</th>
-                        <th>Photo</th>
-                    </thead>
-                @else
+
                     <thead>
                         <th>#</th>
                         <th>Judul</th>
@@ -60,7 +53,7 @@
                         <th>Photo</th>
                         <th>Tindakan</th>
                     </thead>
-                @endif
+
                     <tbody></tbody>
                 </table>
             </div>

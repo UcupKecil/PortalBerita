@@ -13,7 +13,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori = DB::table('kategori_berita')->get();
+        $kategori = DB::table('kategori_beritas')->get();
 
         $data = [
             'kategori' => $kategori,
@@ -25,19 +25,19 @@ class KategoriController extends Controller
 
     public function show($id) {
         if(is_numeric($id)) {
-            $data = DB::table('kategori_berita')->where('id', $id)->first();
+            $data = DB::table('kategori_beritas')->where('id', $id)->first();
 
             //$data->status = number_format($data->status);
 
             return Response::json($data);
         }
 
-        $data = DB::table('kategori_berita')
+        $data = DB::table('kategori_beritas')
 
             ->select([
-                'kategori_berita.*'
+                'kategori_beritas.*'
             ])
-            ->orderBy('kategori_berita.id', 'desc');
+            ->orderBy('kategori_beritas.id', 'desc');
 
         return DataTables::of($data)
             ->editColumn(
@@ -73,7 +73,7 @@ class KategoriController extends Controller
 
             try{
                 DB::transaction(function() use($request) {
-                    DB::table('kategori_berita')->insert([
+                    DB::table('kategori_beritas')->insert([
                         'created_at' => date('Y-m-d H:i:s'),
                         'title' => $request->title,
                         'slug' => Str::slug($request->title),
@@ -107,9 +107,9 @@ class KategoriController extends Controller
         }  else {
             try{
               DB::transaction(function() use($request, $id) {
-                  DB::table('kategori_berita')->where('id', $id)->update([
+                  DB::table('kategori_beritas')->where('id', $id)->update([
                       'updated_at' => date('Y-m-d H:i:s'),
-                      'role' => $request->title,
+                      
                       'slug' => Str::slug($request->title),
                       'status' => 'active',
                   ]);
@@ -137,7 +137,7 @@ class KategoriController extends Controller
             try{
 
               DB::transaction(function() use($id) {
-                  DB::table('kategori_berita')->where('id', $id)->delete();
+                  DB::table('kategori_beritas')->where('id', $id)->delete();
               });
 
                 $json = [

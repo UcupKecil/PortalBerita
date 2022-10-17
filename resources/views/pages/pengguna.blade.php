@@ -45,14 +45,7 @@
                 @endcan
                 <table class="table table-hover table-striped table-border" id="table"
                 >
-                @if(Auth::user()->getRoleNames()[0] == 'User')
-                    <thead>
-                        <th>#</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                    </thead>
-                @else
+
                     <thead>
                         <th>#</th>
                         <th>Nama</th>
@@ -60,7 +53,7 @@
                         <th>Role</th>
                         <th>Tindakan</th>
                     </thead>
-                @endif
+
                     <tbody></tbody>
                 </table>
             </div>

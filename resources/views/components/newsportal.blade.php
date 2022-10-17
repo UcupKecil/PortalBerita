@@ -7,12 +7,19 @@
     @include('components.templates.head')
 
 <body id="top">
-
+  <?php
+      // foreach($ba as $b){
+      //   $bahasa = $b->id;
+      // }
+      $set=DB::table('settings')->where('lang',$bahasa)->get();
+      $lang = DB::table('languages')->where('status','active')->get();
+  ?>
 	<!-- header
    ================================================== -->
     <!-- end header -->
 
         @include('components.templates.header')
+        @yield('main-content')
    <!-- masonry
    ================================================== -->
    <section id="bricks">

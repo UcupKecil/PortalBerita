@@ -25,7 +25,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ url('/product') }}" class="nav-link active">
+            <a href="{{ url('/dashboard') }}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -79,9 +79,7 @@
                   <p>Tags</p>
                 </a>
               </li>
-
             </ul>
-
 
             <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -98,14 +96,21 @@
                   <p>Berita</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('/settings') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Settings</p>
+                </a>
+              </li>
             </ul>
 
-
-
-
-
-
-              @elseif(Auth::user()->getRoleNames()[0] == 'Admin')
+              @elseif(Auth::user()->getRoleNames()[0] == 'Penulis')
+              <li class="nav-item">
+                <a href="{{ url('/berita') }}" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>Berita</p>
+                  </a>
+              </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -116,25 +121,27 @@
                 </a>
                 <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../examples/invoice.html" class="nav-link">
+                <a href="{{url('/comingsoon')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Invoice</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/profile.html" class="nav-link">
+                <a href="{{url('/comingsoon')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Profile</p>
                 </a>
               </li>
+                </ul>
+              </li>
 
 
-              @elseif(Auth::user()->getRoleNames()[0] == 'User')
+              @elseif(Auth::user()->getRoleNames()[0] == 'Pembaca')
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
-                    Data Referensi
+                    Data Saya
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -142,15 +149,16 @@
               <li class="nav-item">
                 <a href="../examples/invoice.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Invoice</p>
+                  <p>Ulasan Saya</p>
                 </a>
               </li>
-
-
-
+              <li class="nav-item">
+                <a href="../examples/invoice.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Profil Saya</p>
+                </a>
+              </li>
               @endif
-
-
             </ul>
           </li>
 

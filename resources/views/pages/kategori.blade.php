@@ -13,7 +13,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Eweuh Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Kategori Berita</a></li>
                 <li class="breadcrumb-item">Berita</li>
               </ol>
             </div>
@@ -45,14 +45,7 @@
                 @endcan
                 <table class="table table-hover table-striped table-border" id="table"
                 >
-                @if(Auth::user()->getRoleNames()[0] == 'User')
-                    <thead>
-                        <th>#</th>
-                        <th>Judul</th>
-                        <th>Slug</th>
-                        <th>Status</th>
-                    </thead>
-                @else
+
                     <thead>
                         <th>#</th>
                         <th>Judul</th>
@@ -60,7 +53,7 @@
                         <th>Status</th>
                         <th>Tindakan</th>
                     </thead>
-                @endif
+
                     <tbody></tbody>
                 </table>
             </div>

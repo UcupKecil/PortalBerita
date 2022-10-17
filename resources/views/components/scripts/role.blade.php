@@ -87,24 +87,8 @@
             }
         });
 
-        @if(Auth::user()->getRoleNames()[0] == 'User')
-            $('#table').DataTable({
-                order: [],
-                lengthMenu: [[5, 10, 25, 50, -1], ['5', '10', '25', '50', 'All']],
-                filter: true,
-                processing: true,
-                responsive: true,
-                serverSide: true,
-                ajax: {
-                    url: '/role/kumahaaingwe'
-                },
-                "columns":
-                [
-                    { data: 'DT_RowIndex', orderable: false, searchable: false},
-                    { data: 'name', name:'roles.name'},
-                ]
-            });
-        @else
+
+
             $('#table').DataTable({
                 order: [],
                 lengthMenu: [[5, 10, 25, 50, -1], ['5', '10', '25', '50', 'All']],
@@ -122,7 +106,7 @@
                     { data: 'action', orderable: false, searchable: false},
                 ]
             });
-        @endif
+
 
 
 
