@@ -73,8 +73,6 @@
             success: function (response) {
                 $('#title').val(response.title);
                 $('#berita_kategori_id').val(response.post_cat_id);
-
-
                 $("#quoteEdit").summernote("code", response.quote);
                 $("#summaryEdit").summernote("code", response.summary);
                 $("#descriptionEdit").summernote("code", response.description);
@@ -115,26 +113,6 @@
             height: 80
         });
 
-        @if(Auth::user()->getRoleNames()[0] == 'User')
-            $('#table').DataTable({
-                order: [],
-                lengthMenu: [[10, 25, 50, 100, -1], ['Sepuluh', 'Salawe', 'lima puluh', 'cepe', 'kabeh']],
-                filter: true,
-                processing: true,
-                responsive: true,
-                serverSide: true,
-                ajax: {
-                    url: '/berita/kumahaaingwe'
-                },
-                "columns":
-                [
-                    { data: 'DT_RowIndex', orderable: false, searchable: false},
-                    { data: 'title', name:'berita.title'},
-                    { data: 'kategori', name:'kategori_berita.title'},
-                    { data: 'keterangan', name:'berita.description'},
-                ]
-            });
-        @else
             $('#table').DataTable({
                 order: [],
                 lengthMenu: [[10, 25, 50, 100, -1], ['Sepuluh', 'Salawe', 'lima puluh', 'cepe', 'kabeh']],
@@ -151,11 +129,10 @@
                     { data: 'title', name:'berita.title'},
                     { data: 'kategori', name:'kategori_berita.title'},
                     { data: 'photo', name:'berita.photo'},
-
                     { data: 'action', orderable: false, searchable: false},
                 ]
             });
-        @endif
+
 
         $('.price').keyup(function(event) {
             if(event.which >= 37 && event.which <= 40) return;

@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
+
     public function login(Request $request)
     {
         $rules = [
@@ -16,8 +22,8 @@ class AuthController extends Controller
         ];
 
         $messages = [
-            'email.required'    => 'E-mail wajib diisi',
-            'email.email'       => 'E-mail wajib nu baleg',
+            'email.required'    => 'Username wajib diisi',
+            'email.email'    => 'Email wajib berupa email',
             'password.required' => 'Password wajib diisi',
             'password.min'      => 'Password minimal mengandung 8 karakter',
         ];
@@ -43,7 +49,7 @@ class AuthController extends Controller
 
 
         if(Auth::check()) {
-            return redirect()->to('/product');
+            return redirect()->to('/dashboard');
         }
 
         return redirect()->back()->withErrors(['error' => 'Email / Password salah'])->withInput($request->all);

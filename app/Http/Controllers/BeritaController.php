@@ -14,7 +14,7 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $BeritaKategori = DB::table('kategori_berita')->get();
+        $BeritaKategori = DB::table('kategori_beritas')->get();
 
         $data = [
             'BeritaKategori' => $BeritaKategori,
@@ -26,19 +26,19 @@ class BeritaController extends Controller
 
     public function show($id) {
         if(is_numeric($id)) {
-            $data = DB::table('berita')->where('id', $id)->first();
+            $data = DB::table('beritas')->where('id', $id)->first();
 
 
 
             return Response::json($data);
         }
 
-        $data = DB::table('berita')
-            ->join('kategori_berita', 'berita.post_cat_id', '=', 'kategori_berita.id')
+        $data = DB::table('beritas')
+            ->join('kategori_beritas', 'beritas.post_cat_id', '=', 'kategori_beritas.id')
             ->select([
-                'berita.*', 'kategori_berita.title as kategori'
+                'beritas.*', 'kategori_beritas.title as kategori'
             ])
-            ->orderBy('berita.id', 'desc');
+            ->orderBy('beritas.id', 'desc');
 
         return DataTables::of($data)
             ->editColumn(
@@ -109,7 +109,7 @@ class BeritaController extends Controller
         }else {
             try{
                 DB::transaction(function() use($request,$cover) {
-                    DB::table('berita')->insert([
+                    DB::table('beritas')->insert([
                         'created_at' => date('Y-m-d H:i:s'),
                         'title' => $request->title,
                         'slug' => Str::slug($request->title),
@@ -120,11 +120,12 @@ class BeritaController extends Controller
                         'added_by' =>  Auth::user()->id ,
                         'photo' => $cover,
                         'status' => 'active',
+                        'lang' => '2',
                     ]);
                 });
 
                 $json = [
-                    'msg' => 'Produk berhasil ditambahkan',
+                    'msg' => 'Berita berhasil ditambahkan',
                     'status' => true
                 ];
             } catch(Exception $e) {
@@ -177,7 +178,7 @@ class BeritaController extends Controller
         } else {
             try{
               DB::transaction(function() use($request, $id, $coverEdit) {
-                  DB::table('berita')->where('id', $id)->update([
+                  DB::table('beritas')->where('id', $id)->update([
                       'updated_at' => date('Y-m-d H:i:s'),
                       'title' => $request->title,
                       'slug' => Str::slug($request->title),
@@ -214,7 +215,7 @@ class BeritaController extends Controller
             try{
 
               DB::transaction(function() use($id) {
-                  DB::table('berita')->where('id', $id)->delete();
+                  DB::table('beritas')->where('id', $id)->delete();
               });
 
                 $json = [

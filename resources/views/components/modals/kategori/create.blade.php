@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="createName">Judul Berita</label>
+                    <label for="createName">Kategori Berita</label>
                     <input type="text" class="form-control" id="createName" name="title">
                 </div>
 
