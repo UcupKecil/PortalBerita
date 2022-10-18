@@ -13,7 +13,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Eweuh Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Berita</a></li>
                 <li class="breadcrumb-item">Berita</li>
               </ol>
             </div>

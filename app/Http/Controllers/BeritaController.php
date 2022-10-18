@@ -120,6 +120,7 @@ class BeritaController extends Controller
                         'added_by' =>  Auth::user()->id ,
                         'photo' => $cover,
                         'status' => 'active',
+                        'lang' => '2',
                     ]);
                 });
 

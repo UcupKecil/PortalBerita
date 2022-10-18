@@ -10,24 +10,24 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-                <label for="shortdes">Deskripsi Pendek</label>
+                <label for="shortdes">Deskripsi Pendek<span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="shortdes" name="shortdes">
             </div>
 
             <div class="form-group">
-                <label for="logo">Logo</label>
+                <label for="logo">Logo<span class="text-danger">*</span></label>
                 <input type="file" data-allowed-file-extensions="jpg png" data-max-file-size-preview="3M" class="form-control" id="logo" name="logo">
             </div>
 
 
             <div class="form-group">
-                <label for="favicon">Favicon</label>
+                <label for="favicon">Favicon<span class="text-danger">*</span></label>
                 <input type="file" data-allowed-file-extensions="ico" data-max-file-size-preview="3M" class="form-control" id="favicon" name="favicon">
             </div>
 
 
             <div class="form-group">
-                <label for="photo">Foto</label>
+                <label for="photo">Foto<span class="text-danger">*</span></label>
                 <input type="file" data-allowed-file-extensions="jpg png" data-max-file-size-preview="3M" class="form-control" id="foto" name="foto">
             </div>
 
@@ -40,12 +40,12 @@
             </div>
 
             <div class="form-group">
-                <label for="notelp">Nomor Telepon</label>
+                <label for="notelp">Nomor Telepon<span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="notelp" name="notelp">
             </div>
 
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email<span class="text-danger">*</span></label>
                 <input type="email" class="form-control" id="email" name="email">
             </div>
 
@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-group">
-                <label for="maps">Maps</label>
+                <label for="maps">Maps<span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="maps" name="maps">
             </div>
 

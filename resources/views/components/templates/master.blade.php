@@ -89,7 +89,7 @@
 
 
      								   		<h1 class="slide-title"><a href="{{route('blog.detail',$berita->slug)}}" title="">{{$berita->title}}</a></h1>
-                            <a href="{{route('blog.detail',$berita->slug)}}" class="more-btn">Continue Reading</a>
+                            <a href="{{route('blog.detail',$berita->slug)}}" class="more-btn"></a>
      								   	</div>
 
 
@@ -140,7 +140,7 @@
                              </div>
                                   <div class="entry-excerpt">
 
-                                      {!! html_entity_decode($berita->description) !!}
+                                    {!! preg_replace('/((\w+\W*){'.(15-1).'}(\w+))(.*)/', '${1}', strip_tags($berita->description)) !!}
                          </div>
 
                      </article>

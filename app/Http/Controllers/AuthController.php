@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
 
-
-
- 
-
     public function login(Request $request)
     {
         $rules = [
@@ -53,7 +49,7 @@ class AuthController extends Controller
 
 
         if(Auth::check()) {
-            return redirect()->to('/product');
+            return redirect()->to('/dashboard');
         }
 
         return redirect()->back()->withErrors(['error' => 'Email / Password salah'])->withInput($request->all);

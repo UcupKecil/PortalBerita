@@ -125,7 +125,8 @@
                         <p>
                         Beritain adalah portal berita yang lengkap <br>
                         dibuat untuk keperluan tugas pembuatan webdev <br>
-                        portal berita ygy.
+                        portal berita ygy. <br>
+                        <a href="{{url('/')}}" class="text-center">Kembali ke portal berita</a>
                         </p>
                     </div>
 

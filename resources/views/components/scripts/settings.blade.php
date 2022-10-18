@@ -18,7 +18,7 @@
             url: `/settings/${settings_id}`,
             dataType: "json",
             success: function (response) {
-                $('#shortdes').val(response.short_des); //NOTED INI SHORTDES ATAU SHORT_DES
+                $('#shortdes').val(response.short_des); 
                 $("#addressedit").summernote("code", response.address);
                 $('#notelp').val(response.phone);
                 $('#email').val(response.email);
