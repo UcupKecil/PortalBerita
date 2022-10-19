@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Response;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
 
 class BeritaController extends Controller
 {
@@ -233,4 +234,11 @@ class BeritaController extends Controller
 
         return Response::json($json);
     }
+
+    //INI UNTUK BELAJAR GUZZLE
+
+  
+
+
+
 }

@@ -56,7 +56,7 @@ Route::get('/dashboard', function () {
 });
 
 
-
+Route::get('/guzzle', 'BeritaController@guzzle');
 // Route::get('/news', function () {
 //     return view('components/products/news');
 // });
